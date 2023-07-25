@@ -1,0 +1,8 @@
+envparse==0.2.0
+fastapi==0.89.1
+httpx==0.23.3
+psycopg2-binary==2.9.5
+pytest==7.2.1
+python-dotenv==0.21.1
+SQLAlchemy==1.4.46
+uvicorn==0.20.0
