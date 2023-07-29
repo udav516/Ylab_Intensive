@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 
-import menu, dish, submenu
+from restaurant_menu.model import dish, menu, submenu
 
 app = FastAPI(title="Restaurant menus")
 

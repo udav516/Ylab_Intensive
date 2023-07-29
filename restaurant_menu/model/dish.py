@@ -6,9 +6,9 @@ from sqlalchemy.orm import Session
 from starlette import status
 from starlette.exceptions import HTTPException
 
-from database import get_db
-from models import Dish, Menu, Submenu
-from schemas import DishSchemaBase, DishSchemaOut
+from restaurant_menu.controller.database import get_db
+from restaurant_menu.controller.models import Dish, Submenu, Menu
+from restaurant_menu.controller.schemas import DishSchemaOut, DishSchemaBase
 
 router = APIRouter()
 

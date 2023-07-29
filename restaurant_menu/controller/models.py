@@ -4,7 +4,7 @@ from sqlalchemy import Column, Float, ForeignKey, Integer, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
-from database import Base
+from restaurant_menu.controller.database import Base
 
 
 class Menu(Base):

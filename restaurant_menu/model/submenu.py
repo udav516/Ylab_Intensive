@@ -6,15 +6,15 @@ from sqlalchemy.orm import Session
 from starlette import status
 from starlette.exceptions import HTTPException
 
-from database import get_db
-from models import Menu, Submenu
-from schemas import MenuSchemaBase, SubmenuSchemaOut
+from restaurant_menu.controller.database import get_db
+from restaurant_menu.controller.models import Submenu, Menu
+from restaurant_menu.controller.schemas import SubmenuSchemaOut, MenuSchemaBase
 
 router = APIRouter()
 
 
 @router.get("/")
-def get(db: Session = Depends(get_db)) -> list[SubmenuSchemaOut]:
+def get(db: Session = Depends(get_db)) -> List[SubmenuSchemaOut]:
     _submenu = db.query(Submenu).all()
     return _submenu
 
@@ -30,6 +30,7 @@ def create(
     db.refresh(_submenu)
     _menu = db.query(Menu).filter(Menu.id == _submenu.menu_id).first()
     _menu.submenus_count += 1
+    print(_menu)
     db.commit()
     db.refresh(_menu)
     return _submenu

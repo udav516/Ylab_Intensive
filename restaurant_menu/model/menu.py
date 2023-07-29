@@ -6,9 +6,9 @@ from sqlalchemy.orm import Session
 from starlette import status
 from starlette.exceptions import HTTPException
 
-from database import get_db
-from models import Menu
-from schemas import MenuSchemaBase, MenuSchemaOut
+from restaurant_menu.controller.database import get_db
+from restaurant_menu.controller.models import Menu
+from restaurant_menu.controller.schemas import MenuSchemaOut, MenuSchemaBase
 
 router = APIRouter()
 
@@ -21,7 +21,7 @@ def get(db: Session = Depends(get_db)) -> List[MenuSchemaOut]:
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
 def create(
-    menu: MenuSchemaBase, db: Session = Depends(get_db)
+        menu: MenuSchemaBase, db: Session = Depends(get_db)
 ) -> MenuSchemaOut:
     _menu = Menu(**menu.dict())
     db.add(_menu)
@@ -42,7 +42,7 @@ def get_by_id(id: UUID, db: Session = Depends(get_db)) -> MenuSchemaOut:
 
 @router.patch("/{id}")
 def update(
-    id: UUID, menu: MenuSchemaBase, db: Session = Depends(get_db)
+        id: UUID, menu: MenuSchemaBase, db: Session = Depends(get_db)
 ) -> MenuSchemaOut:
     _menu = db.query(Menu).filter(Menu.id == id)
     db_menu = _menu.first()
