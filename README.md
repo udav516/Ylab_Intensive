@@ -24,3 +24,11 @@
 11. Установить PostgreSQL, создать базу данных и добавить туда три таблицы с id-зависимостями menu -> submenu -> dishes.
 
 12. Перед прохождением тестов очищать таблицы в базе данных.
+
+# Задание 2
+
+1. docker-compose up --build -d
+2. docker-compose down
+3. docker-compose -f docker-compose-test.yaml up --build -d
+4. docker-compose -f docker-compose-test.yaml run test
+5. docker-compose -f docker-compose-test.yaml down

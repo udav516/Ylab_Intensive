@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  test:
+    container_name: "test"
+    image: test
+    build: .
+    environment:
+      POSTGRES_HOSTNAME: 'db_test'
+    depends_on:
+      db_test:
+        condition: service_healthy
+    command: "pytest"
+    networks:
+      - net_test
+  db_test:
+    container_name: "db_test"
+    image: postgres:15.1-alpine
+    environment:
+      POSTGRES_PASSWORD: "EY8oqoMW_B"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    networks:
+      - net_test
+networks:
+  net_test:
+    driver: bridge
